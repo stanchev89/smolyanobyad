@@ -1,0 +1,22 @@
+<article class="dish">
+  <img [src]="dish.img" alt="">
+  <article class="dish-content">
+    <h2>{{dish.name}}</h2>
+    <ul class="products">
+      <p>Продукти:</p>
+      <li *ngFor="let product of dish.products">{{product}}</li>
+    </ul>
+    <p>{{dish.weight}} гр.</p>
+  </article>
+
+  <article class="dish-buy">
+    <article class="dish-buy-options">
+
+    </article>
+    <article class="dish-buy-order">
+      <h3 class="price">{{dish.price.toFixed(2)}} лв.</h3>
+      <button (click)="addToCart()" class="price-btn">Добави</button>
+    </article>
+
+  </article>
+</article>

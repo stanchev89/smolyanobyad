@@ -1,0 +1,32 @@
+<article class="food-list">
+  <section class="salads">
+    <h2 class="food-list-title">Салати</h2>
+    <ul>
+      <li *ngFor="let dish of this.selectCategory('salad')"><app-dish [dish]="dish"></app-dish></li>
+    </ul>
+  </section>
+  <section class="soups">
+    <h2 class="food-list-title">Супи</h2>
+    <ul>
+      <li *ngFor="let dish of this.selectCategory('soup')"><app-dish [dish]="dish"></app-dish></li>
+    </ul>
+  </section>
+  <section class="main-dishes">
+    <h2 class="food-list-title">Основни ястия</h2>
+    <ul>
+      <li *ngFor="let dish of this.selectCategory('main-dish')"><app-dish [dish]="dish"></app-dish></li>
+    </ul>
+  </section>
+  <section class="deserts">
+    <h2 class="food-list-title">Десерти</h2>
+    <ul>
+      <li *ngFor="let dish of this.selectCategory('desert')"><app-dish [dish]="dish"></app-dish></li>
+    </ul>
+  </section>
+  <section class="drinks">
+    <h2 class="food-list-title">Напитки</h2>
+    <ul>
+      <li *ngFor="let dish of this.selectCategory('drink')"><app-dish [dish]="dish"></app-dish></li>
+    </ul>
+  </section>
+</article>

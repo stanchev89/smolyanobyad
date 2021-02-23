@@ -1,0 +1,39 @@
+.container {
+  font-family: Arial, sans-serif;
+  display: flex;
+}
+
+.container-text {
+  flex-basis: 100%;
+  padding: 20px;
+  text-align: center;
+}
+
+.container-footer {
+  margin: 0 auto;
+  display: flex;
+  padding: 20px;
+  width: 70%;
+  align-items: center;
+}
+
+img {
+  max-width: 40%;
+  margin: 0;
+  padding-bottom: 50px;
+}
+
+.company-info {
+  text-align: center;
+  font-size: .7rem;
+ font-style: normal;
+  font-weight: bold;
+  flex-grow: 1;
+  margin: 0;
+}
+
+p {
+  font-style: oblique;
+  letter-spacing: 1.3px;
+  line-height: 35px;
+}

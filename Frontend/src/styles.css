@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+@import url("https://use.fontawesome.com/releases/v5.15.2/css/all.css");
+html{
+  font-family: 'Roboto Slab', sans-serif;
+}
+body {
+  background: #F7F7F7;
+  box-sizing: border-box;
+  max-width: 1700px;
+  margin: 0 auto;
+}
+
+.container {
+  border: 3px solid #E25E20;
+  border-radius: 8px;
+  box-shadow: 0px 0px 13px 0px;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 100px auto;
+}
