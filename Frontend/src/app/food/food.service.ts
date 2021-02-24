@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
-import {IDish} from '../interfaces';
-@Injectable({
-  providedIn: 'root'
-})
+import {ICart, ICartItem, IDish} from '../interfaces';
+import {BehaviorSubject} from 'rxjs';
+import {take} from 'rxjs/operators';
+@Injectable()
 export class FoodService {
-  // @ts-ignore
-  // @ts-ignore
-  // @ts-ignore
+  initialCart: ICart = {
+    products: [],
+    totalPrice: 0
+  };
+  cart$ = new BehaviorSubject<ICart>(this.initialCart);
+  cartProducts = this.cart$.asObservable();
+
   dailyMenu: IDish[] = [
     {
       name: 'Шопска салата',
@@ -15,7 +19,9 @@ export class FoodService {
       category: 'salad',
       meatless: true,
       img: '../../assets/shopska_salad.jpg',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     },
     {
       name: 'Шопска салата с много сирене',
@@ -24,7 +30,9 @@ export class FoodService {
       category: 'salad',
       meatless: true,
       img: '../../assets/shopska_salad.jpg',
-      weight: 300
+      weight: 300,
+      options: {сирене: ['със_сирене_extraPrize_0_65', 'без_сирене']},
+      selected_options: []
     },
     {
       name: 'Зелева салата',
@@ -33,7 +41,9 @@ export class FoodService {
       category: 'salad',
       meatless: true,
       img: '../../assets/zeleva_salata.jpg',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     },
     {
       name: 'Зелева салата',
@@ -42,7 +52,9 @@ export class FoodService {
       category: 'salad',
       meatless: true,
       img: '../../assets/zeleva_salata.jpg',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     },
     {
       name: 'Зелева салата',
@@ -51,7 +63,9 @@ export class FoodService {
       category: 'salad',
       meatless: true,
       img: '../../assets/zeleva_salata.jpg',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     },
     {
       name: 'Зелева салата',
@@ -60,7 +74,9 @@ export class FoodService {
       category: 'salad',
       meatless: true,
       img: '../../assets/zeleva_salata.jpg',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     },
     {
       name: 'Агнешка супа',
@@ -69,7 +85,9 @@ export class FoodService {
       category: 'soup',
       meatless: false,
       img: '../../assets/lamb_soup.jpg',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     },
     {
       name: 'Агнешка супа',
@@ -78,7 +96,9 @@ export class FoodService {
       category: 'soup',
       meatless: false,
       img: '../../assets/lamb_soup.jpg',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     },
     {
       name: 'Агнешка супа',
@@ -87,7 +107,9 @@ export class FoodService {
       category: 'soup',
       meatless: false,
       img: '../../assets/lamb_soup.jpg',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     },
     {
       name: 'Агнешка супа',
@@ -96,7 +118,9 @@ export class FoodService {
       category: 'soup',
       meatless: false,
       img: '../../assets/lamb_soup.jpg',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     },
     {
       name: 'Агнешка супа',
@@ -105,7 +129,9 @@ export class FoodService {
       category: 'soup',
       meatless: false,
       img: '../../assets/lamb_soup.jpg',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     },
     {
       name: 'Спанак с ориз',
@@ -114,7 +140,9 @@ export class FoodService {
       category: 'main-dish',
       meatless: false,
       img: '../../assets/spinach_with_beef.jpg',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     },
     {
       name: 'Спанак с ориз',
@@ -123,7 +151,9 @@ export class FoodService {
       category: 'main-dish',
       meatless: false,
       img: '../../assets/spinach_with_beef.jpg',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     },
     {
       name: 'Спанак с ориз',
@@ -132,7 +162,9 @@ export class FoodService {
       category: 'main-dish',
       meatless: false,
       img: '../../assets/spinach_with_beef.jpg',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     },
     {
       name: 'Спанак с ориз',
@@ -141,7 +173,9 @@ export class FoodService {
       category: 'main-dish',
       meatless: false,
       img: '../../assets/spinach_with_beef.jpg',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     },
     {
       name: 'Спанак с ориз',
@@ -150,7 +184,9 @@ export class FoodService {
       category: 'main-dish',
       meatless: false,
       img: '../../assets/spinach_with_beef.jpg',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     },
     {
       name: 'Спанак с ориз',
@@ -159,7 +195,9 @@ export class FoodService {
       category: 'main-dish',
       meatless: false,
       img: '../../assets/spinach_with_beef.jpg',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     },
     {
       name: 'Спанак с ориз',
@@ -168,7 +206,9 @@ export class FoodService {
       category: 'main-dish',
       meatless: false,
       img: '../../assets/spinach_with_beef.jpg',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     }, {
       name: 'Халва',
       price: 1.30,
@@ -176,7 +216,9 @@ export class FoodService {
       category: 'desert',
       meatless: true,
       img: '../../assets/sweet_halva.jpg',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     }, {
       name: 'Халва',
       price: 1.30,
@@ -184,7 +226,9 @@ export class FoodService {
       category: 'desert',
       meatless: true,
       img: '../../assets/sweet_halva.jpg',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     }, {
       name: 'Халва',
       price: 1.30,
@@ -192,7 +236,9 @@ export class FoodService {
       category: 'desert',
       meatless: true,
       img: '../../assets/sweet_halva.jpg',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     }, {
       name: 'Халва',
       price: 1.30,
@@ -200,7 +246,9 @@ export class FoodService {
       category: 'desert',
       meatless: true,
       img: '../../assets/sweet_halva.jpg',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     }, {
       name: 'Халва',
       price: 1.30,
@@ -208,7 +256,9 @@ export class FoodService {
       category: 'desert',
       meatless: true,
       img: '../../assets/sweet_halva.jpg',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     }, {
       name: 'Халва',
       price: 1.30,
@@ -216,7 +266,9 @@ export class FoodService {
       category: 'desert',
       meatless: true,
       img: '../../assets/sweet_halva.jpg',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     },
     {
       name: 'Минерална вода',
@@ -225,7 +277,9 @@ export class FoodService {
       category: 'drink',
       meatless: true,
       img: '../../assets/water.png',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     },
     {
       name: 'Минерална вода',
@@ -234,7 +288,9 @@ export class FoodService {
       category: 'drink',
       meatless: true,
       img: '../../assets/water.png',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     },
     {
       name: 'Минерална вода',
@@ -243,7 +299,9 @@ export class FoodService {
       category: 'drink',
       meatless: true,
       img: '../../assets/water.png',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     },
     {
       name: 'Минерална вода',
@@ -252,7 +310,9 @@ export class FoodService {
       category: 'drink',
       meatless: true,
       img: '../../assets/water.png',
-      weight: 300
+      weight: 300,
+      options: undefined,
+      selected_options: []
     }
 
   ];
@@ -262,5 +322,66 @@ export class FoodService {
 
   demoMenu(): IDish[] {
     return this.dailyMenu;
+  }
+
+  calculateCartTotalPrice(cart: ICart): void {
+    cart.totalPrice = 0;
+    cart.products.forEach((product: ICartItem) => {
+      cart.totalPrice += product.quantity * product.price;
+    });
+  }
+
+  objectsEqual(o1, o2): boolean {
+    return typeof o1 === 'object' && Object.keys(o1).length > 0
+        ? Object.keys(o1).length === Object.keys(o2).length
+        && Object.keys(o1).every(p => this.objectsEqual(o1[p], o2[p]))
+        : o1 === o2;
+  }
+
+  arraysEqual(arr1, arr2): boolean {
+    return arr1.length === arr2.length && arr1.every((o, idx) => this.objectsEqual(o, arr2[idx]));
+  }
+
+  addToCart(newProduct: ICartItem): void {
+    this.cartProducts.pipe(take(1)).subscribe((cart: ICart) => {
+      const exist = cart.products.find((prod: ICartItem) =>
+          prod.name === newProduct.name
+          && prod.price === newProduct.price
+          && this.arraysEqual(prod.selected_options, newProduct.selected_options));
+      if (exist) {
+        exist.quantity += newProduct.quantity;
+        this.calculateCartTotalPrice(cart);
+        return this.cart$.next(cart);
+      }
+      cart.products = cart.products.concat(newProduct);
+      this.calculateCartTotalPrice(cart);
+      return this.cart$.next(cart);
+    });
+  }
+
+  updateCartItem(cartItem: ICartItem): void {
+    this.cartProducts.pipe(take(1)).subscribe((cart: ICart) => {
+      const allItems = cart.products;
+      allItems.forEach((item: ICartItem) => {
+        if (item.name === cartItem.name && this.arraysEqual(item.selected_options, cartItem.selected_options)) {
+          item.quantity = cartItem.quantity;
+        }
+      });
+      this.calculateCartTotalPrice(cart);
+      this.cart$.next(cart);
+    });
+  }
+
+  removeItemFromCart(itemToRemove: ICartItem): void {
+    this.cartProducts.pipe(take(1)).subscribe((cart: ICart) => {
+      const allItems = cart.products;
+      allItems.forEach((item: ICartItem, index) => {
+        if (item.name === itemToRemove.name && this.arraysEqual(item.selected_options, itemToRemove.selected_options)) {
+          cart.products.splice(index, 1);
+        }
+      });
+      this.calculateCartTotalPrice(cart);
+      this.cart$.next(cart);
+    });
   }
 }

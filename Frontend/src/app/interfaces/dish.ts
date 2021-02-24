@@ -6,4 +6,6 @@ export interface IDish {
   price: number;
   weight: number;
   img: string;
+  options: object | undefined | null;
+  selected_options: string[];
 }

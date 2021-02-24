@@ -4,14 +4,16 @@ import { MenuComponent } from './menu/menu.component';
 import { DishesComponent } from './dishes/dishes.component';
 import { DishComponent } from './dish/dish.component';
 import {FormsModule} from "@angular/forms";
+import {UserModule} from "../user/user.module";
 
 
 
 @NgModule({
   declarations: [MenuComponent, DishesComponent, DishComponent],
-  imports: [
-    CommonModule,
-    FormsModule
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        UserModule
+    ]
 })
 export class FoodModule { }

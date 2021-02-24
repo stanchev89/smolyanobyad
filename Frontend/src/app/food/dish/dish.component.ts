@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {IDish} from "../../interfaces";
+import {ICart, ICartItem, IDish} from '../../interfaces';
+import {FoodService} from '../food.service';
 
 @Component({
   selector: 'app-dish',
@@ -8,14 +9,22 @@ import {IDish} from "../../interfaces";
 })
 export class DishComponent implements OnInit {
 
-  constructor() { }
+  constructor(private foodService: FoodService) { }
   @Input() dish: IDish;
+  cartItems = this.foodService.cart$.subscribe((cart: ICart) => cart.products);
 
   ngOnInit(): void {
   }
 
-  addToCart() {
-    console.log('Добавено!')
+  addToCart(): void {
+    const objToCart: ICartItem = {
+      name: this.dish.name,
+      price: this.dish.price,
+      options: this.dish.options,
+      quantity: 1,
+      selected_options:[]
+    };
+    this.foodService.addToCart(objToCart);
   }
 
 }

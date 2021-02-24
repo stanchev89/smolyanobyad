@@ -1,0 +1,27 @@
+<article class="cart">
+    <i class="fas fa-shopping-cart fa-2x"></i>
+    <ul>
+        <li *ngFor="let item of (cart$ | async).products">
+
+            <article class="item-container">
+                    <h3 class="item-name">{{item.name}}</h3>
+                <article class="item-info-box">
+                    <label for="quantity">Количество
+                        <input type="number" value="{{item.quantity}}" min="1" class="item-quantity" #updatedQuantity id="quantity">
+                    </label>
+                    <p class="item-price">{{(item.quantity * item.price).toFixed(2)}} лв.</p>
+                </article>
+                <article class="item-btn-box">
+                    <button class="item-btn renew" (click)="updateQuantity(item,updatedQuantity.value)">Обнови</button>
+                    <button class="item-btn remove" (click)="removeItem(item)">Премахни</button>
+                </article>
+
+            </article>
+
+        </li>
+    </ul>
+    <article class="total-price" *ngIf="(cart$ | async).products.length > 0">
+        <p class="price">{{(cart$ | async).totalPrice.toFixed(2)}} лв.</p>
+        <button class="order-btn">Поръчай</button>
+    </article>
+</article>

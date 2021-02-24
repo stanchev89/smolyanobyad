@@ -5,8 +5,10 @@ import { AppRoutingModule } from './app-routing-module';
 import { AppComponent } from './app.component';
 import {SharedModule} from './shared/shared.module';
 import {CoreModule} from './core/core.module';
-import {FoodModule} from "./food/food.module";
-import {NgbModule} from "@ng-bootstrap/ng-bootstrap"
+import {FoodModule} from './food/food.module';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {UserService} from './user/user.service';
+import {FoodService} from './food/food.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap"
     CoreModule,
     FoodModule
   ],
-  providers: [],
+  providers: [UserService, FoodService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
