@@ -43,30 +43,30 @@
 
 <ng-template #addNewAddressForm>
     <article class="newAddressWrapper">
-        <app-add-new-address></app-add-new-address>
+        <app-add-new-address (addedNewAddres)="addedNewAddress()"></app-add-new-address>
         <i class="fas fa-times close-tab" (click)="closeTab()"></i>
     </article>
 </ng-template>
 
 <ng-template #detailsForm>
 
-        <h5>Адрес за доставка:</h5>
+        <h5 class="details-form-title">Адрес за доставка:</h5>
         <form name="test" id="test" (ngSubmit)="buy(test.value)" #test="ngForm">
-            <select name="address" class="address-list" ngModel="">
-                <option *ngFor="let address of (user$ | async).address" name="address">{{address.address}}</option>
+            <select name="address" class="address-list" [ngModel]="selectedAddress">
+                <option *ngFor="let address of (user$ | async).address" name="address" [attr.selected]="(user$ | async).address[0].address === address.address" >{{address.address}}</option>
             </select>
             <button type="button" #addNewAddressBtn (click)="toggleAddNewAddres()" class="btn-add-address" >Добави нов адрес</button>
 
-            <h5>Начин на плащане:</h5>
+            <h5 class="details-form-title">Начин на плащане:</h5>
             <article class="payment-method">
 
                 <label for="cash">
                     В брой
-                    <input type="radio" id="cash" name="payment" value="cash" ngModel="">
+                    <input type="radio" id="cash" name="payment" value="cash" ngModel="cash">
                 </label>
                 <label for="card">
                     С карта
-                    <input type="radio" id="card" name="payment" value="card" ngModel="">
+                    <input type="radio" id="card" name="payment" value="card" ngModel="cash">
                 </label>
             </article>
             <button class="order-btn back" type="button" (click)="toggleMenu()">Назад</button>

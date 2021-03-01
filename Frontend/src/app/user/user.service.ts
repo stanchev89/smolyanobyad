@@ -110,6 +110,7 @@ export class UserService {
       const existAddress = user.address.find(a => a.address === newAddress.address);
       if (!existAddress) {
         user.address.push(newAddress);
+        user.address = user.address.reverse();
         this.user$.next(user);
       }
     });

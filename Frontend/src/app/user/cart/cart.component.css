@@ -59,7 +59,7 @@ label input {
     font-weight: bold;
 }
 .item-container {
-    border-top: 1px solid black;
+    border-top: 1px dotted black;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -235,7 +235,7 @@ label input {
 .close-tab {
     position: absolute;
     right: 19px;
-    top: 6px;
+    top: 25px;
     background: #E25E20;
     padding: 3px 5px;
     color: #FFFF;
@@ -273,4 +273,8 @@ label input {
 .address-list:hover {
     cursor: pointer;
     box-shadow: 0 0 5px 0;
+}
+
+.details-form-title {
+    margin-bottom: 5px;
 }

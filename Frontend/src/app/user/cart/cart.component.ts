@@ -11,12 +11,14 @@ export class CartComponent implements OnInit {
   user$ = this.userService.userData$;
   orderDetails = false;
   showAddNewAddressTab = false;
+  selectedAddress = null;
   // @ViewChild('addNewAddressBtn') newAddressBtn;
 
 
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
+    this.user$.subscribe(user => this.selectedAddress =  user.address[0].address);
   }
 
   updateQuantity(item: ICartItem, newQuantity: string): void {
@@ -54,6 +56,10 @@ export class CartComponent implements OnInit {
   clickedOutsideCart(): void{
     this.showAddNewAddressTab = false;
     this.orderDetails = false;
+  }
+
+  addedNewAddress(): void{
+    this.showAddNewAddressTab = false;
   }
 
 }

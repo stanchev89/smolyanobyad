@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import {UserService} from '../user.service';
 import {IAddress} from '../../interfaces';
 
@@ -10,9 +10,11 @@ import {IAddress} from '../../interfaces';
 export class AddNewAddressComponent implements OnInit {
 
   constructor(private userService: UserService) { }
+  @Output() addedNewAddres = new EventEmitter<void>();
 
   ngOnInit(): void {
   }
+
 
   addNewAddress(data): void{
     const priceMap = {
@@ -27,6 +29,8 @@ export class AddNewAddressComponent implements OnInit {
     }
 
     this.userService.addUserAddress(newAddress);
+    this.addedNewAddres.emit();
+
   }
 
 }
