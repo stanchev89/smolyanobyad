@@ -14,7 +14,7 @@ export class DishesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  selectCategory(cat) {
+  selectCategory(cat): IDish[]{
     return this.dishes.filter(dish => dish.category === cat);
   }
 

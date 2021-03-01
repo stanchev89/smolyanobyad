@@ -1,10 +1,17 @@
 <article class="cart">
+    <a *ngIf="(user$ | async).cart.products.length > 0" routerLink="/cart" class="cart-badge">{{(user$ | async).cart.products.length}}</a>
     <i class="fas fa-shopping-cart fa-2x"></i>
+    <ng-container *ngTemplateOutlet=" orderDetails ? details : cartProducts"></ng-container>
+</article>
+<ng-template #cartProducts>
+        <article class="cart-clear" *ngIf="(user$ | async).cart.products.length > 0">
+            <i class="fas fa-trash" (click)="clearCart()"></i>
+        </article>
     <ul>
-        <li *ngFor="let item of (cart$ | async).products">
+        <li *ngFor="let item of (user$ | async).cart.products">
 
             <article class="item-container">
-                    <h3 class="item-name">{{item.name}}</h3>
+                <h3 class="item-name">{{item.name}}</h3>
                 <article class="item-info-box">
                     <label for="quantity">Количество
                         <input type="number" value="{{item.quantity}}" min="1" class="item-quantity" #updatedQuantity id="quantity">
@@ -20,8 +27,49 @@
 
         </li>
     </ul>
-    <article class="total-price" *ngIf="(cart$ | async).products.length > 0">
-        <p class="price">{{(cart$ | async).totalPrice.toFixed(2)}} лв.</p>
-        <button class="order-btn">Поръчай</button>
+    <article class="total-price" *ngIf="(user$ | async).cart.products.length > 0">
+        <p class="price">{{(user$ | async).cart.totalPrice.toFixed(2)}} лв.</p>
+        <button class="order-btn" (click)="toggleMenu()">Поръчай</button>
     </article>
-</article>
+</ng-template>
+
+<ng-template #details>
+    <article class="order-info">
+    <ng-container *ngTemplateOutlet=" showAddNewAddressTab ? addNewAddressForm : detailsForm"></ng-container>
+    </article>
+
+
+</ng-template>
+
+<ng-template #addNewAddressForm>
+    <article class="newAddressWrapper">
+        <app-add-new-address></app-add-new-address>
+        <i class="fas fa-times close-tab" (click)="closeTab()"></i>
+    </article>
+</ng-template>
+
+<ng-template #detailsForm>
+
+        <h5>Адрес за доставка:</h5>
+        <form name="test" id="test" (ngSubmit)="buy(test.value)" #test="ngForm">
+            <select name="address" class="address-list" ngModel="">
+                <option *ngFor="let address of (user$ | async).address" name="address">{{address.address}}</option>
+            </select>
+            <button type="button" #addNewAddressBtn (click)="toggleAddNewAddres()" class="btn-add-address" >Добави нов адрес</button>
+
+            <h5>Начин на плащане:</h5>
+            <article class="payment-method">
+
+                <label for="cash">
+                    В брой
+                    <input type="radio" id="cash" name="payment" value="cash" ngModel="">
+                </label>
+                <label for="card">
+                    С карта
+                    <input type="radio" id="card" name="payment" value="card" ngModel="">
+                </label>
+            </article>
+            <button class="order-btn back" type="button" (click)="toggleMenu()">Назад</button>
+            <button class="order-btn" type="submit">Потвърди поръчката</button>
+        </form>
+</ng-template>

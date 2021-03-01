@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ICart, ICartItem, IDish} from '../../interfaces';
-import {FoodService} from '../food.service';
+import {ICart, ICartItem, IDish, IUser} from '../../interfaces';
+import {UserService} from '../../user/user.service';
 
 @Component({
   selector: 'app-dish',
@@ -9,9 +9,9 @@ import {FoodService} from '../food.service';
 })
 export class DishComponent implements OnInit {
 
-  constructor(private foodService: FoodService) { }
+  constructor(private userService: UserService) { }
   @Input() dish: IDish;
-  cartItems = this.foodService.cart$.subscribe((cart: ICart) => cart.products);
+  cartItems = this.userService.user$.subscribe((user: IUser) => user.cart.products);
 
   ngOnInit(): void {
   }
@@ -22,9 +22,9 @@ export class DishComponent implements OnInit {
       price: this.dish.price,
       options: this.dish.options,
       quantity: 1,
-      selected_options:[]
+      selected_options: []
     };
-    this.foodService.addToCart(objToCart);
+    this.userService.addToCart(objToCart);
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FoodService} from "../food.service";
-import {IDish} from "../../interfaces";
+import {FoodService} from '../food.service';
+import {IDish} from '../../interfaces';
 
 @Component({
   selector: 'app-menu',
@@ -12,6 +12,9 @@ export class MenuComponent implements OnInit {
   constructor(private foodService: FoodService) { }
 
   ngOnInit(): void {
+  }
+
+  clickedOutsideCart(): void{
   }
 
 }

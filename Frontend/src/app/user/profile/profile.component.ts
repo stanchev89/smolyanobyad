@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from '../user.service';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  user$ = this.userService.user$;
+  mode = 'profileInfo';
 
-  constructor() { }
+  constructor(private userService: UserService) {
+  }
 
   ngOnInit(): void {
+  }
+
+  toggleMode(changeTo): void {
+    this.mode = changeTo;
   }
 
 }

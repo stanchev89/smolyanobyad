@@ -14,9 +14,10 @@
   border-radius: 8px;
   box-shadow: 0px 0px 13px 0px;
 }
-app-cart {
+app-cart{
   position: sticky;
-  top:10px;
+  top:20px;
   margin-left: 20px;
   width: 30%;
+  height: 70vh;
 }

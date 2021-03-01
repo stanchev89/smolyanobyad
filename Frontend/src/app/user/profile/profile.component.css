@@ -1,0 +1,109 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    border: 2px solid #E25E20;
+    border-radius: 6px;
+    min-height: 300px;
+    width: 25vw;
+    margin: 200px auto;
+    box-shadow: 0 0 6px 0;
+}
+.profile-icon {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,-66%);
+}
+
+.profile-icon i {
+    color: white;
+    background: #E25E20;
+    padding: 20px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.profile-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    flex-wrap:wrap;
+}
+
+.profile-info-username {
+    font-size: 2rem;
+    border-bottom: 1px solid #E25E20;
+    position: relative;
+    padding: 15px;
+    max-width: 80%;
+    overflow-wrap: anywhere;
+    margin-bottom: 0;
+}
+
+.profile-info-username::after {
+    bottom: 3px;
+    position: absolute;
+    content: "";
+    width: 102%;
+    border: 1px solid #E25E20;
+    flex-basis: 90%;
+    right: -1.5%;
+}
+
+.profile-content ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    align-items: center;
+}
+
+.profile-content li {
+    margin: 20px;
+    width: 100%;
+}
+
+.profile-content a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    background: #8D9F3E;
+    border-radius: 6px;
+    box-shadow: 0 0 6px 0;
+}
+.profile-content a:hover {
+    background: white;
+    border: 2px solid #8D9F3E;
+    color: #8D9F3E;
+    padding: 8px;
+}
+
+.profile-btn {
+    padding: 10px;
+    color: white;
+    border-radius: 6px;
+    background: #E25E20;
+    border: none;
+    margin: 10px ;
+    margin-bottom: 20px;
+    font-weight: bold;
+    box-shadow: 0 0 6px 0;
+
+}
+
+.profile-btn:hover {
+    cursor: pointer;
+    background: white;
+    border: 2px solid #E25E20;
+    color: #E25E20;
+    padding: 8px;
+}
+
+.profile-btn:focus{
+    outline: unset;
+}

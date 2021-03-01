@@ -5,6 +5,7 @@ import { DishesComponent } from './dishes/dishes.component';
 import { DishComponent } from './dish/dish.component';
 import {FormsModule} from "@angular/forms";
 import {UserModule} from "../user/user.module";
+import {SharedModule} from "../shared/shared.module";
 
 
 
@@ -13,7 +14,8 @@ import {UserModule} from "../user/user.module";
     imports: [
         CommonModule,
         FormsModule,
-        UserModule
+        UserModule,
+        SharedModule
     ]
 })
 export class FoodModule { }

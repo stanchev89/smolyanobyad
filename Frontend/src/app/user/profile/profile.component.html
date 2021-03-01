@@ -1,1 +1,29 @@
-<p>profile works!</p>
+<article class="profile">
+    <h2 class="profile-info-username"> {{(user$ | async).username}}</h2>
+
+    <article class="profile-icon">
+        <i class="fas fa-user fa-5x"></i>
+    </article>
+    <ng-container *ngTemplateOutlet="mode === 'profileInfo' ? profileInfo : null">
+
+    </ng-container>
+</article>
+
+<ng-template #profileInfo >
+    <article class="profile-content">
+        <ul>
+            <li><a href="">Моите адреси</a></li>
+            <li><a href="">Моите поръчки</a></li>
+        </ul>
+    </article>
+    <article class="profile-buttons">
+        <button class="profile-btn username">Смяна на username</button>
+        <button class="profile-btn password">Смяна на парола</button>
+    </article>
+</ng-template>
+
+<ng-template #profileOrders>
+    <ul>
+        <li *ngFor="let order of (user$ | async).orders">{{order}}</li>
+    </ul>
+</ng-template>
