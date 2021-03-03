@@ -16,6 +16,13 @@
     margin-bottom: 0;
 }
 
+.empty-cart {
+    font-weight: lighter;
+    font-style: italic;
+    color: #8D9F3E;
+    margin:5px;
+}
+
 .cart-clear {
     position: absolute;
     display: flex;
@@ -183,6 +190,7 @@ label input {
     display: flex;
     flex-direction: column;
     text-align: center;
+    width: 100%;
 }
 
 .payment-method {
@@ -268,6 +276,7 @@ label input {
     border: 1px solid #8D9F3E;
     padding: 5px;
     width: 80%;
+    text-align: center;
 }
 
 .address-list:hover {
@@ -277,4 +286,47 @@ label input {
 
 .details-form-title {
     margin-bottom: 5px;
+}
+
+.total-price {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: end;
+    border-bottom: 1px solid black;
+}
+.total-price-cart,
+.total-price-delivery {
+    display: flex;
+    flex-direction: column;
+    margin:10px;
+}
+
+.total-price-cart p,
+.total-price-delivery p {
+    font-size: .6rem;
+    margin-top:0;
+}
+
+.total-price-cart h5,
+.total-price-delivery h5 {
+    margin:0;
+}
+
+.plus {
+    align-self: center;
+}
+
+.total-price-sum {
+    flex-basis: 100%;
+    margin-bottom: 10px;
+}
+.total-price-sum h3 {
+    width: 120px;
+    margin: 5px;
+    border: 3px solid #E25E20;
+    color: #E25E20;
+    font-weight: bold;
+    border-radius: 12px;
+    margin: 0 auto;
 }

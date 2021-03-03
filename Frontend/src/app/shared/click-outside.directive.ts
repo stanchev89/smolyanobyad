@@ -1,4 +1,4 @@
-import {Directive, Output, EventEmitter, ElementRef, HostListener, Input} from '@angular/core';
+import {Directive, Output, EventEmitter, ElementRef, HostListener} from '@angular/core';
 
 @Directive({
   selector: '[appClickOutside]'
@@ -6,7 +6,6 @@ import {Directive, Output, EventEmitter, ElementRef, HostListener, Input} from '
 export class ClickOutsideDirective {
 
   @Output() clickOutside = new EventEmitter<void>();
-  @Input() btnElementRef: ElementRef;
 
   constructor(private elementRef: ElementRef) { }
 

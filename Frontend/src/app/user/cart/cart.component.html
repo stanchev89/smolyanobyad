@@ -1,7 +1,8 @@
-<article class="cart">
+<article class="cart" #clickedInside>
     <a *ngIf="(user$ | async).cart.products.length > 0" routerLink="/cart" class="cart-badge">{{(user$ | async).cart.products.length}}</a>
     <i class="fas fa-shopping-cart fa-2x"></i>
     <ng-container *ngTemplateOutlet=" orderDetails ? details : cartProducts"></ng-container>
+    <p class="empty-cart" *ngIf="(user$ | async).cart.products.length === 0">Няма добавени продукти...</p>
 </article>
 <ng-template #cartProducts>
         <article class="cart-clear" *ngIf="(user$ | async).cart.products.length > 0">
@@ -52,14 +53,28 @@
 
         <h5 class="details-form-title">Адрес за доставка:</h5>
         <form name="test" id="test" (ngSubmit)="buy(test.value)" #test="ngForm">
-            <select name="address" class="address-list" [ngModel]="selectedAddress">
-                <option *ngFor="let address of (user$ | async).address" name="address" [attr.selected]="(user$ | async).address[0].address === address.address" >{{address.address}}</option>
+            <select name="address" class="address-list" [ngModel]="selectedAddress" #selected>
+                <option *ngFor="let address of (user$ | async).address" name="address"  >{{address.address}}</option>
             </select>
             <button type="button" #addNewAddressBtn (click)="toggleAddNewAddres()" class="btn-add-address" >Добави нов адрес</button>
-
+            <article class="total-price">
+                <article class="total-price-cart">
+                    <p>Продукти:</p>
+                    <h5>{{(user$ | async).cart.totalPrice.toFixed(2)}} лв.</h5>
+                </article>
+                <p class="plus">+</p>
+                <article class="total-price-delivery">
+                    <p>Доставка:</p>
+                    <h5 *ngIf="(user$ | async).cart.totalPrice < 10">{{(userAddressArr$ | async)[selected.selectedIndex].delivery.toFixed(2)}} лв.</h5>
+                    <h5 *ngIf="(user$ | async).cart.totalPrice >= 10">0.50 лв.</h5>
+                </article>
+                <article class="total-price-sum">
+                    <h3 *ngIf="(user$ | async).cart.totalPrice < 10">{{((user$ | async).cart.totalPrice + (userAddressArr$ | async)[selected.selectedIndex].delivery).toFixed(2)}} лв.</h3>
+                    <h3 *ngIf="(user$ | async).cart.totalPrice >= 10">{{((user$ | async).cart.totalPrice + 0.5).toFixed(2)}} лв.</h3>
+                </article>
+            </article>
             <h5 class="details-form-title">Начин на плащане:</h5>
             <article class="payment-method">
-
                 <label for="cash">
                     В брой
                     <input type="radio" id="cash" name="payment" value="cash" ngModel="cash">
