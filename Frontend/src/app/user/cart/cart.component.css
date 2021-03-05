@@ -180,6 +180,10 @@ label input {
     font-weight: bolder;
     box-shadow: 0 0 5px 0;
 }
+.back:hover {
+    color:#E25E20;
+    border-color: #E25E20;
+}
 
 .back {
     background: #E25E20;
@@ -242,7 +246,7 @@ label input {
 
 .close-tab {
     position: absolute;
-    right: 19px;
+    right: 6%;
     top: 25px;
     background: #E25E20;
     padding: 3px 5px;

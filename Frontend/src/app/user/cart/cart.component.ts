@@ -27,7 +27,7 @@ export class CartComponent implements OnInit {
 
   @ViewChild('clickedInside') clickedInside;
   @HostListener('document:click', ['$event.target'])
-  public onClick(targetElement) {
+  public onClick(targetElement): void {
     const clickedInside = this.clickedInside.nativeElement.contains(targetElement);
     if (!clickedInside) {
       console.log('outside clicked');

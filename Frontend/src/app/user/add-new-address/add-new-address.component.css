@@ -73,3 +73,7 @@ i {
 i:hover {
     cursor: pointer;
 }
+
+#newAddress {
+    width: 90%;
+}

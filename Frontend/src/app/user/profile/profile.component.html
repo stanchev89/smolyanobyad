@@ -1,5 +1,8 @@
 <article class="profile">
-    <h2 class="profile-info-username"> {{(user$ | async).username}}</h2>
+    <article class="profile-username-wrapper">
+        <h2 class="profile-info-username"> {{(user$ | async).username}}</h2>
+<!--        <i class="fas fa-pen"></i>-->
+    </article>
 
     <article class="profile-icon">
         <i class="fas fa-user fa-5x"></i>
@@ -11,13 +14,27 @@
 
 <ng-template #profileInfo >
     <article class="profile-content">
-        <ul>
+        <article class="profile-content-phone">
+            <article class="profile-content-i-wrapper">
+                <i class="fas fa-phone-alt"></i>
+            </article>
+            <p>{{(user$ | async).phone}}</p>
+<!--            <i class="fas fa-pen"></i>-->
+        </article>
+        <article class="profile-content-email">
+            <article class="profile-content-i-wrapper">
+                <i class="fas fa-at"></i>
+            </article>
+            <p>{{(user$ | async).email}}</p>
+<!--            <i class="fas fa-pen"></i>-->
+        </article>
+        <ul class="profile-list">
             <li><a href="">Моите адреси</a></li>
             <li><a href="">Моите поръчки</a></li>
         </ul>
     </article>
     <article class="profile-buttons">
-        <button class="profile-btn username">Смяна на username</button>
+        <button class="profile-btn username">Редактиране</button>
         <button class="profile-btn password">Смяна на парола</button>
     </article>
 </ng-template>

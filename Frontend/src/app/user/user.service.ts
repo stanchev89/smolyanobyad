@@ -16,6 +16,8 @@ export class UserService {
     username: 'stanchev89',
     password: '123123',
     address: [{address: 'Varna,Lyuben Karavelov 50, ap 8', delivery: 1.5}, {address: 'Smolyan, ul. Chan 3, ap 43', delivery: 0.5}],
+    phone: '+359876969696',
+    email: 'stanchev89@abv.bg',
     orders: [],
     favouriteDishes: [],
     cart: this.initialCart
