@@ -1,1 +1,21 @@
-<p>user-address works!</p>
+<article class="address-bar">
+    <h3>Моите адреси</h3>
+    <ng-container *ngTemplateOutlet="editMode ?  adressEditTemplate : adressListTemplate"></ng-container>
+</article>
+
+<ng-template #adressListTemplate>
+    <article class="address-content">
+        <ul class="address-content-list">
+            <li *ngFor="let address of (user$ | async).address">
+                <app-user-address-item [item]="address" (deleteRequest)="deleteAddress($event)"></app-user-address-item>
+            </li>
+        </ul>
+    </article>
+    <article class="add-new-address">
+        <i class="fas fa-plus" title="Добави нов адрес" (click)="toggleEditMode()"></i>
+    </article>
+</ng-template>
+
+<ng-template #adressEditTemplate>
+    <app-add-new-address (addedNewAddres)="toggleEditMode()" backBtn="true" (backBtnClicked)="toggleEditMode()"></app-add-new-address>
+</ng-template>

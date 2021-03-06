@@ -296,7 +296,7 @@ label input {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: end;
+    align-items: flex-end;
     border-bottom: 1px solid black;
 }
 .total-price-cart,

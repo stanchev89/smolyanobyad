@@ -1,16 +1,12 @@
 import {
-  AfterContentChecked,
-  AfterViewInit,
   Component,
-  DoCheck,
-  ElementRef, HostListener,
+  HostListener,
   OnInit,
-  Renderer2,
   ViewChild
 } from '@angular/core';
-import { ICartItem} from '../../interfaces';
+import {ICartItem, IOrderDetails} from '../../interfaces';
 import {UserService} from '../user.service';
-import {Observable} from 'rxjs';
+import {take} from 'rxjs/operators';
 import {map} from 'rxjs/operators';
 
 @Component({
@@ -29,9 +25,9 @@ export class CartComponent implements OnInit {
   @HostListener('document:click', ['$event.target'])
   public onClick(targetElement): void {
     const clickedInside = this.clickedInside.nativeElement.contains(targetElement);
-    if (!clickedInside) {
-      console.log('outside clicked');
-    }
+    // if (!clickedInside) {
+    //   console.log('outside clicked');
+    // }
   }
 
 
@@ -62,8 +58,13 @@ export class CartComponent implements OnInit {
     this.orderDetails = !this.orderDetails;
   }
 
-  buy(data): void{
-    console.log(data);
+  buy(data: IOrderDetails): void{
+    if(data.payment === 'cash') {
+      this.userService.finishOrder(data).pipe(take(1)).subscribe(() => {
+        this.toggleAddNewAddres();
+        this.toggleMenu();
+      });
+    }
   }
 
   toggleAddNewAddres(): void{
@@ -81,10 +82,6 @@ export class CartComponent implements OnInit {
 
   addedNewAddress(): void{
     this.showAddNewAddressTab = false;
-  }
-
-  proba(el): void {
-    console.log(el);
   }
 
 }

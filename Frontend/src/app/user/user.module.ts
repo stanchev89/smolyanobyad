@@ -9,11 +9,12 @@ import {FormsModule} from '@angular/forms';
 import {NgbAccordionModule} from '@ng-bootstrap/ng-bootstrap';
 import { AddNewAddressComponent } from './add-new-address/add-new-address.component';
 import {SharedModule} from "../shared/shared.module";
+import { UserAddressItemComponent } from './user-address-item/user-address-item.component';
 
 
 
 @NgModule({
-    declarations: [CartComponent, CartPageComponent, ProfileComponent, UserAddressComponent, UserOrdersComponent, AddNewAddressComponent],
+    declarations: [CartComponent, CartPageComponent, ProfileComponent, UserAddressComponent, UserOrdersComponent, AddNewAddressComponent, UserAddressItemComponent],
     exports: [
         CartComponent
     ],

@@ -1,0 +1,39 @@
+.address-bar {
+    width: 100%;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+}
+.container h3 {
+    margin-top: 5px;
+}
+
+.address-content-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    list-style: none;
+    font-size: 1.3rem;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.address-content-list li {
+    margin: 10px;
+}
+
+.add-new-address i {
+    font-weight: bold;
+    font-size: 35px;
+    margin: 0;
+    color: #8D9F3E;
+    padding: 10px;
+}
+
+.add-new-address i:hover {
+    cursor: pointer;
+}
+app-add-new-address {
+    width: 100%;
+    margin: 0 auto;
+}

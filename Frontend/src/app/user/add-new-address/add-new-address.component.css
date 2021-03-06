@@ -40,7 +40,7 @@ input {
 }
 
 .btn-add {
-    width: 50%;
+    width: 80px;
     padding:10px;
     font-weight: bold;
     border: 1px solid #8D9F3E;
@@ -76,4 +76,18 @@ i:hover {
 
 #newAddress {
     width: 90%;
+}
+.back {
+    background: #E25E20;
+    border-color: #E25E20;
+}
+.back:hover {
+    color: #E25E20;
+    border-color: #E25E20;
+}
+.btn-wrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }

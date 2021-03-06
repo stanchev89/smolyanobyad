@@ -1,5 +1,6 @@
 .profile {
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -49,7 +50,7 @@
     position: relative;
     padding: 15px;
     width: 50%;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
     margin-bottom: 0;
 }
 /*.fa-pen {*/
@@ -85,10 +86,12 @@
 .profile-content-phone p,
 .profile-content-email p{
     font-size: 15px;
-    margin:10px;
     font-weight: bold;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
     letter-spacing: 1.5px;
+}
+.profile-content-i-wrapper {
+    margin-bottom: 15px;
 }
 
 /*.profile-content-phone .fa-pen,*/
@@ -140,6 +143,12 @@
     border: 2px solid #8D9F3E;
     color: #8D9F3E;
     padding: 8px;
+    cursor: pointer;
+}
+.profile-content p {
+    margin-top: 0;
+    max-width: 100%;
+    overflow-wrap: break-word;
 }
 
 .profile-btn {
@@ -165,4 +174,34 @@
 
 .profile-btn:focus{
     outline: unset;
+}
+
+.edit-content {
+    margin-top:0;
+}
+.edit-content input {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #8D9F3E;
+    font-weight: bold;
+}
+
+::ng-deep *:focus {
+    outline-color: #E25E20;
+}
+
+.confirm-change {
+    color: white;
+    border-color: #8D9F3E;
+    background: #8D9F3E;
+}
+.confirm-change:hover {
+    border-color: #8D9F3E;
+    background: white;
+    color: #8D9F3E;
+}
+
+.show-address,
+.show-orders {
+    width: 40%;
 }

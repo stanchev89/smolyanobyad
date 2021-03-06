@@ -10,10 +10,11 @@
                 <option value="kaptaja">кв.Каптажа</option>
             </select>
         </label>
-        <label for="newAddress">
             <input type="text" name="newAddress" id="newAddress" ngModel="" placeholder="Въведете точен адрес...">
-        </label>
-            <button class="btn-add">Добави адрес</button>
-    </form>
+            <article class="btn-wrapper">
+                <button *ngIf="backBtn" class="btn-add back" type="button" (click)="back()" >Назад</button>
+                <button class="btn-add">Добави</button>
+            </article>
 
+    </form>
 </article>

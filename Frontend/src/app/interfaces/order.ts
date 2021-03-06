@@ -5,6 +5,6 @@ export interface IOrder {
     price: number;
     payment: string;
     successful_payment: boolean | undefined | null;
-    date: string;
+    date: number;
     address: string;
 }

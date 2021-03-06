@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UserService} from '../user.service';
 
 @Component({
@@ -6,18 +6,35 @@ import {UserService} from '../user.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnDestroy {
   user$ = this.userService.user$;
-  mode = 'profileInfo';
+  editProfileInfo = false;
+  showUserAddress = false;
+  showUserOrders = false;
 
   constructor(private userService: UserService) {
   }
 
-  ngOnInit(): void {
+  toggleEditProfile(): void {
+    this.editProfileInfo = !this.editProfileInfo;
   }
 
-  toggleMode(changeTo): void {
-    this.mode = changeTo;
+  toggleUserAddress(): void{
+    this.showUserAddress = !this.showUserAddress;
   }
 
+  toggleUserOrders(): void {
+    this.showUserOrders = !this.showUserOrders;
+  }
+
+  editProfile(data): void {
+    this.userService.editUserData(data);
+    this.toggleEditProfile();
+  }
+
+  ngOnDestroy(): void {
+    this.editProfileInfo = false;
+    this.showUserOrders = false;
+    this.showUserAddress = false;
+  }
 }

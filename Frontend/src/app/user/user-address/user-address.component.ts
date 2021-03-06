@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Output, EventEmitter} from '@angular/core';
+import {UserService} from '../user.service';
+import {IAddress} from '../../interfaces';
 
 @Component({
   selector: 'app-user-address',
   templateUrl: './user-address.component.html',
   styleUrls: ['./user-address.component.css']
 })
-export class UserAddressComponent implements OnInit {
+export class UserAddressComponent {
+  user$ = this.userService.userData$;
+  editMode = false;
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
-  ngOnInit(): void {
+  deleteAddress(item: IAddress): void {
+    this.userService.deleteUserAddress(item);
   }
 
+  toggleEditMode(): void{
+    this.editMode = !this.editMode;
+  }
 }

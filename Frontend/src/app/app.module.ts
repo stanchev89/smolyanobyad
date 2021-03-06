@@ -9,6 +9,9 @@ import {FoodModule} from './food/food.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {UserService} from './user/user.service';
 import {FoodService} from './food/food.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDialogModule} from '@angular/material/dialog';
+import {ConfirmDialogComponent} from './core/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,9 @@ import {FoodService} from './food/food.service';
     AppRoutingModule,
     SharedModule,
     CoreModule,
-    FoodModule
+    FoodModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [UserService, FoodService],
   bootstrap: [AppComponent]

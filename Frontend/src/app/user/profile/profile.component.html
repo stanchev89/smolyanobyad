@@ -1,18 +1,40 @@
-<article class="profile">
-    <article class="profile-username-wrapper">
-        <h2 class="profile-info-username"> {{(user$ | async).username}}</h2>
-<!--        <i class="fas fa-pen"></i>-->
-    </article>
-
+<article class="profile" *ngIf="!showUserOrders && !showUserAddress">
     <article class="profile-icon">
         <i class="fas fa-user fa-5x"></i>
     </article>
-    <ng-container *ngTemplateOutlet="mode === 'profileInfo' ? profileInfo : null">
-
-    </ng-container>
+    <article class="profile-username-wrapper">
+        <h2 class="profile-info-username"> {{(user$ | async).username}}</h2>
+        <!--        <i class="fas fa-pen"></i>-->
+    </article>
+    <ng-container *ngTemplateOutlet="editProfileInfo ?  editProfileTemplate : profileInfoTemplate"></ng-container>
 </article>
 
-<ng-template #profileInfo >
+<article class="profile show-address" *ngIf="showUserAddress">
+    <article class="profile-icon">
+        <i class="fas fa-map-marker-alt fa-5x"></i>
+    </article>
+    <article class="profile-username-wrapper">
+        <h2 class="profile-info-username"> {{(user$ | async).username}}</h2>
+        <!--        <i class="fas fa-pen"></i>-->
+    </article>
+    <app-user-address></app-user-address>
+    <button class="profile-btn username" type="button" (click)="toggleUserAddress()">Към профила</button>
+</article>
+
+<article class="profile show-orders" *ngIf="showUserOrders">
+    <article class="profile-icon">
+        <i class="fas fa-history fa-5x"></i>
+    </article>
+    <article class="profile-username-wrapper">
+        <h2 class="profile-info-username"> {{(user$ | async).username}}</h2>
+        <!--        <i class="fas fa-pen"></i>-->
+    </article>
+    <app-user-orders></app-user-orders>
+    <button class="profile-btn username" type="button" (click)="toggleUserOrders()">Към профила</button>
+</article>
+
+<ng-template #profileInfoTemplate >
+
     <article class="profile-content">
         <article class="profile-content-phone">
             <article class="profile-content-i-wrapper">
@@ -29,14 +51,55 @@
 <!--            <i class="fas fa-pen"></i>-->
         </article>
         <ul class="profile-list">
-            <li><a href="">Моите адреси</a></li>
-            <li><a href="">Моите поръчки</a></li>
+            <li><a (click)="toggleUserAddress()">Моите адреси</a></li>
+            <li><a (click)="toggleUserOrders()">Моите поръчки</a></li>
         </ul>
+        <article class="profile-buttons">
+            <button class="profile-btn username" (click)="toggleEditProfile()">Редактиране</button>
+            <button class="profile-btn password">Смяна на парола</button>
+        </article>
+    </article>
+
+</ng-template>
+
+<ng-template #editProfileTemplate >
+    <section class="edit-content">
+    <form (ngSubmit)="editProfile(profileUpdate.value)" name="profileEditForm" id="profileEditForm" #profileUpdate="ngForm">
+    <article class="profile-username-wrapper">
+        <label for="username">
+            <p>Потребителско име:</p>
+            <input id="username" value="{{(user$ | async).username}}" name="username" [ngModel]="(user$ | async).username"/>
+        </label>
+        <!--        <i class="fas fa-pen"></i>-->
+    </article>
+
+    <article class="profile-content">
+        <article class="profile-content-phone">
+            <article class="profile-content-i-wrapper">
+                <i class="fas fa-phone-alt"></i>
+            </article>
+            <label for="phone">
+                <input value="{{(user$ | async).phone}}" name="phone" id="phone" [ngModel]="(user$ | async).phone"/>
+            </label>
+            <!--            <i class="fas fa-pen"></i>-->
+        </article>
+        <article class="profile-content-email">
+            <article class="profile-content-i-wrapper">
+                <i class="fas fa-at"></i>
+            </article>
+            <label for="email">
+                <input value="{{(user$ | async).email}}" name="email" id="email" [ngModel]="(user$ | async).email" />
+
+            </label>
+            <!--            <i class="fas fa-pen"></i>-->
+        </article>
     </article>
     <article class="profile-buttons">
-        <button class="profile-btn username">Редактиране</button>
-        <button class="profile-btn password">Смяна на парола</button>
+        <button class="profile-btn username" type="button" (click)="toggleEditProfile()">Назад</button>
+        <button class="profile-btn username confirm-change">Потвърди промените</button>
     </article>
+    </form>
+    </section>
 </ng-template>
 
 <ng-template #profileOrders>

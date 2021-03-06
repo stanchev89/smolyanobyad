@@ -1,0 +1,47 @@
+.dialog {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background: white;
+    border-radius: 6px;
+    padding: 20px;
+    border: 1px solid #E25E20;
+}
+::ng-deep *:focus {
+    outline: unset;
+}
+
+.mat-dialog-title {
+    margin-bottom: 5px;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+
+.mat-dialog-content {
+    font-weight: bold;
+}
+
+.mat-dialog-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mat-dialog-btn {
+    width: 100px;
+    padding: 5px;
+    border-radius: 6px;
+    background: #E25E20;
+    border: 2px solid #E25E20;
+    color: white;
+    font-weight: bold;
+}
+
+.mat-dialog-btn:hover {
+    cursor: pointer;
+    background: white;
+    color: #E25E20;
+}

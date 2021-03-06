@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {IUser} from '../interfaces/user';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Observable, of, Subscription} from 'rxjs';
 import {take} from 'rxjs/operators';
 import {IOrder} from '../interfaces/order';
-import {IAddress, ICart, ICartItem} from '../interfaces';
+import {IAddress, ICart, ICartItem, IOrderDetails} from '../interfaces';
 
 
 @Injectable()
@@ -15,7 +15,10 @@ export class UserService {
   initialUser: IUser = {
     username: 'stanchev89',
     password: '123123',
-    address: [{address: 'Varna,Lyuben Karavelov 50, ap 8', delivery: 1.5}, {address: 'Smolyan, ul. Chan 3, ap 43', delivery: 0.5}],
+    address: [{address: 'Varna,Lyuben Karavelov 50, ap 8', delivery: 1.5}, {
+      address: 'Smolyan, ul. Chan 3, ap 43',
+      delivery: 0.5
+    }],
     phone: '+359876969696',
     email: 'stanchev89@abv.bg',
     orders: [],
@@ -27,7 +30,8 @@ export class UserService {
   userData$ = this.user$.asObservable();
 
 
-  constructor() { }
+  constructor() {
+  }
 
   calculateCartTotalPrice(cart: ICart): number {
     cart.totalPrice = 0;
@@ -57,7 +61,7 @@ export class UserService {
           && this.arraysEqual(prod.selected_options, newProduct.selected_options));
       if (exist) {
         exist.quantity += newProduct.quantity;
-      }else {
+      } else {
         cart.products = cart.products.concat(newProduct);
       }
       cart.totalPrice = this.calculateCartTotalPrice(cart);
@@ -93,21 +97,15 @@ export class UserService {
     });
   }
 
-  clearCart(): void{
+  clearCart(): void {
     this.userData$.pipe(take(1)).subscribe(user => {
       user.cart = {products: [], totalPrice: 0};
       this.user$.next(user);
     });
   }
 
-  finishOrder(order: IOrder): void{
-    this.userData$.pipe(take(1)).subscribe((user: IUser) => {
-      user.orders.push(order);
-      this.user$.next(user);
-    });
-  };
 
-  addUserAddress(newAddress: IAddress): void{
+  addUserAddress(newAddress: IAddress): void {
     this.userData$.pipe(take(1)).subscribe(user => {
       const existAddress = user.address.find(a => a.address === newAddress.address);
       if (!existAddress) {
@@ -117,4 +115,51 @@ export class UserService {
       }
     });
   }
+
+  deleteUserAddress(addressToDelete: IAddress): void {
+    this.userData$.pipe(take(1)).subscribe(user => {
+      let index;
+      const existAddress = user.address.find((a: IAddress, i) => {
+        index = i;
+        return a.address === addressToDelete.address;
+      });
+      if (existAddress) {
+        user.address.splice(index, 1);
+        this.user$.next(user);
+      }
+    });
+  }
+
+  editUserData(data): void {
+    this.userData$.pipe(take(1)).subscribe(user => {
+      for (const prop in data) {
+        user[prop] = data[prop];
+      }
+      this.user$.next(user);
+    });
+  }
+
+
+  finishOrder(orderData: IOrderDetails): Observable<any> {
+   return of(this.userData$.pipe(take(1)).subscribe(user => {
+      const newEmptyCart: ICart = {
+        products: [],
+        totalPrice: 0
+      }
+      const newOrder: IOrder = {
+        cart: user.cart.products,
+        price: user.cart.totalPrice,
+        address: orderData.address,
+        payment: orderData.payment,
+        date: Date.now(),
+        successful_payment: orderData.payment === 'cash' ? true : false,
+      };
+      user.orders.push(newOrder);
+      user.cart = newEmptyCart;
+      this.user$.next(user);
+    }));
+  }
+
+
+
 }

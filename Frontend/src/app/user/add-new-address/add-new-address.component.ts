@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import {Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
 import {UserService} from '../user.service';
 import {IAddress} from '../../interfaces';
 
@@ -11,6 +11,8 @@ export class AddNewAddressComponent implements OnInit {
 
   constructor(private userService: UserService) { }
   @Output() addedNewAddres = new EventEmitter<void>();
+  @Input() backBtn;
+  @Output() backBtnClicked = new EventEmitter<void>();
 
   ngOnInit(): void {
   }
@@ -26,11 +28,13 @@ export class AddNewAddressComponent implements OnInit {
     const newAddress: IAddress = {
       address: data.newAddress,
       delivery: priceMap[data.region]
-    }
-
+    };
     this.userService.addUserAddress(newAddress);
     this.addedNewAddres.emit();
+  }
 
+  back(): void {
+    this.backBtnClicked.emit();
   }
 
 }
