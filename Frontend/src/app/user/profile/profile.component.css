@@ -9,7 +9,7 @@
     border-radius: 6px;
     min-height: 300px;
     width: 25vw;
-    margin: 200px auto;
+    margin: 100px auto;
     box-shadow: 0 0 6px 0;
 }
 .profile-icon {
@@ -125,11 +125,13 @@
 }
 
 .profile-content li {
-    margin: 20px;
-    width: 100%;
+    margin: 5px 20px 20px 20px;
+    width: 95%;
 }
 
 .profile-content a {
+    display: flex;
+    justify-content: center;
     text-decoration: none;
     color: white;
     font-weight: bold;
@@ -150,6 +152,8 @@
     max-width: 100%;
     overflow-wrap: break-word;
 }
+
+
 
 .profile-btn {
     padding: 10px;

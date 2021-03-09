@@ -1,9 +1,14 @@
 .address-wrapper {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;;
     align-items: center;
-    justify-content: center;
+    text-align: center;
     position: relative;
     padding: 10px;
+}
+.address-wrapper p {
+    margin-right: 10px;
 }
 
 ::ng-deep *:focus {
@@ -15,7 +20,6 @@
 }
 
 .btn-delete-address {
-    margin-left: 20px;
     border-radius: 6px;
     border:none;
     background: #E25E20;

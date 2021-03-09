@@ -334,3 +334,14 @@ label input {
     border-radius: 12px;
     margin: 0 auto;
 }
+.alert-success {
+    text-align: center;
+}
+.alert-success p {
+    color: #8D9F3E;
+    font-style: italic;
+}
+.alert-success i {
+    color: #8D9F3E;
+    margin-bottom: 10px;
+}

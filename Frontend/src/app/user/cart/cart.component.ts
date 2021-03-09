@@ -20,6 +20,7 @@ export class CartComponent implements OnInit {
   orderDetails = false;
   showAddNewAddressTab = false;
   selectedAddress = null;
+  orderCompleted = false;
 
   @ViewChild('clickedInside') clickedInside;
   @HostListener('document:click', ['$event.target'])
@@ -61,8 +62,12 @@ export class CartComponent implements OnInit {
   buy(data: IOrderDetails): void{
     if(data.payment === 'cash') {
       this.userService.finishOrder(data).pipe(take(1)).subscribe(() => {
-        this.toggleAddNewAddres();
-        this.toggleMenu();
+        this.showAddNewAddressTab = false;
+        this.orderDetails = false;
+        this.orderCompleted = true;
+        setTimeout(() => {
+          this.orderCompleted = false;
+        }, 3000);
       });
     }
   }

@@ -1,0 +1,45 @@
+.no-orders p {
+    font-style: italic;
+    margin: 50% auto;
+}
+
+.orders table {
+    border-collapse: unset;
+    margin: 30px auto;
+}
+
+.orders table tbody tr:hover {
+    cursor: pointer;
+    background: lightgrey;
+}
+
+.orders table th {
+    padding:10px;
+}
+
+.orders table td {
+    padding: 0px;
+    margin: 0px;
+}
+
+::ng-deep .pagination {
+    list-style: none;
+    display: flex;
+    text-decoration: unset;
+    justify-content: center;
+    padding-left: 0;
+    font-weight: bold;
+}
+
+ngb-pagination ::ng-deep .pagination li {
+    margin: 10px;
+}
+ngb-pagination ::ng-deep ul > li:not(.active) > a {
+    color: #E25E20;
+    text-decoration: none;
+}
+
+ngb-pagination ::ng-deep ul > li.active > a {
+    color: #E25E20;
+    font-weight: bold;
+}

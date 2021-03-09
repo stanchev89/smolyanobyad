@@ -6,9 +6,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { UserAddressComponent } from './user-address/user-address.component';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
 import {FormsModule} from '@angular/forms';
-import {NgbAccordionModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbAccordionModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AddNewAddressComponent } from './add-new-address/add-new-address.component';
-import {SharedModule} from "../shared/shared.module";
+import {SharedModule} from '../shared/shared.module';
 import { UserAddressItemComponent } from './user-address-item/user-address-item.component';
 
 
@@ -22,7 +22,8 @@ import { UserAddressItemComponent } from './user-address-item/user-address-item.
         CommonModule,
         FormsModule,
         NgbAccordionModule,
-        SharedModule
+        SharedModule,
+        NgbModule
     ]
 })
 export class UserModule { }

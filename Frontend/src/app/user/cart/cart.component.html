@@ -2,7 +2,12 @@
     <a *ngIf="(user$ | async).cart.products.length > 0" routerLink="/cart" class="cart-badge">{{(user$ | async).cart.products.length}}</a>
     <i class="fas fa-shopping-cart fa-2x"></i>
     <ng-container *ngTemplateOutlet=" orderDetails ? details : cartProducts"></ng-container>
-    <p class="empty-cart" *ngIf="(user$ | async).cart.products.length === 0">Няма добавени продукти...</p>
+    <p class="empty-cart" *ngIf="(user$ | async).cart.products.length === 0 && !orderCompleted">Няма добавени продукти...</p>
+    <div class="alert alert-success" role="alert" *ngIf="orderCompleted">
+        <p>Вашата поръчка е приета.</p>
+        <p>Благодарим ви!</p>
+        <i class="fas fa-check-circle fa-5x"></i>
+    </div>
 </article>
 <ng-template #cartProducts>
         <article class="cart-clear" *ngIf="(user$ | async).cart.products.length > 0">
@@ -50,7 +55,6 @@
 </ng-template>
 
 <ng-template #detailsForm>
-
         <h5 class="details-form-title">Адрес за доставка:</h5>
         <form name="test" id="test" (ngSubmit)="buy(test.value)" #test="ngForm">
             <select name="address" class="address-list" [ngModel]="selectedAddress" #selected>
