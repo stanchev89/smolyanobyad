@@ -27,12 +27,16 @@ const dishSchema = new mongoose.Schema(
         img: {
             type: types.String
         },
-        options: {
-            type: [{ key: types.String, values: [types.String]}]
-        },
-        selected_options: {
-            type: [types.String]
-        }
+        options:
+            [
+                {
+                    option: types.String,
+                    values: [types.String]
+                }
+            ]
+        ,
+        selected_options: [types.String]
+
     }
 );
 

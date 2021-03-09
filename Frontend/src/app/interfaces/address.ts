@@ -1,4 +1,4 @@
 export interface IAddress {
-    address: string;
+    location: string;
     delivery: number;
 }

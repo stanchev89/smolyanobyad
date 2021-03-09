@@ -15,8 +15,8 @@ export class UserService {
   initialUser: IUser = {
     username: 'stanchev89',
     password: '123123',
-    address: [{address: 'Varna,Lyuben Karavelov 50, ap 8', delivery: 1.5}, {
-      address: 'Smolyan, ul. Chan 3, ap 43',
+    address: [{location: 'Varna,Lyuben Karavelov 50, ap 8', delivery: 1.5}, {
+      location: 'Smolyan, ul. Chan 3, ap 43',
       delivery: 0.5
     }],
     phone: '+359876969696',
@@ -106,7 +106,7 @@ export class UserService {
 
   addUserAddress(newAddress: IAddress): void {
     this.userData$.pipe(take(1)).subscribe(user => {
-      const existAddress = user.address.find(a => a.address === newAddress.address);
+      const existAddress = user.address.find(a => a.location === newAddress.location);
       if (!existAddress) {
         user.address.push(newAddress);
         user.address = user.address.reverse();
@@ -120,7 +120,7 @@ export class UserService {
       let index;
       const existAddress = user.address.find((a: IAddress, i) => {
         index = i;
-        return a.address === addressToDelete.address;
+        return a.location === addressToDelete.location;
       });
       if (existAddress) {
         user.address.splice(index, 1);

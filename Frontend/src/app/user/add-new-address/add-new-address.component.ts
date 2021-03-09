@@ -26,7 +26,7 @@ export class AddNewAddressComponent implements OnInit {
       kaptaja: 1.5
     };
     const newAddress: IAddress = {
-      address: data.newAddress,
+      location: data.newAddress,
       delivery: priceMap[data.region]
     };
     this.userService.addUserAddress(newAddress);

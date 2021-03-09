@@ -1,15 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const { auth } = require("../utils");
-const { questionController } = require("../controllers");
+const { dishController } = require("../controllers");
 
 // middleware that is specific to this router
 
-router.get("/", questionController.getAllQuestions);
+router.get("/", dishController.getAllDishes);
 
-router.get("/:category", questionController.getQuestionsByCategory);
+router.get("/:category", dishController.getDishesByCategory);
 
-router.post("/add-new-question", auth(), questionController.addNewQuestion);
+router.post("/add-new-dish", auth(), dishController.addNewDish);
 
 
 // router.get('/my-trips/:id/reservations', auth(), themeController.getReservations);

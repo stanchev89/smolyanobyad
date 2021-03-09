@@ -12,10 +12,10 @@ const removePassword = (data) => {
 };
 
 function register(req, res, next) {
-	const { username, password, repeatPassword } = req.body;
+	const { username, password, repeatPassword, email, phone } = req.body;
 
 	return userModel
-		.create({ username, password })
+		.create({ username, password, password, email, phone, cart = [], orders = [], address = [], })
 		.then(() => {
 			res.status(200).send({message:'Successful registration'});
 		})
@@ -91,7 +91,7 @@ function changeUserPassword(req,res,next) {
 
 function getProfileInfo(req, res, next) {
 	if(!req.user) {
-		res.status(200).send('Successful guest user request...');
+		res.status(200).send('Guest user');
 		return;
 	}
 	const { _id: userId } = req.user;
@@ -114,25 +114,34 @@ function getAllUsers(req,res,next) {
 
 function editProfileInfo(req, res, next) {
 	const {_id: userId} = req.user;
-	const {username, correct_answer, answered_question, is_vip} = req.body;
+	const {username, addAddress, deleteAddress, phone, email, order,} = req.body;
 	const update = {
 		$addToSet: {},
 		$push:{},
-		$set: {}
+		$set: {},
+		$pull: {}
 	};
-	if (is_vip) {
-		update.$set.is_vip = !!is_vip;
-	}
+	
 	if (username) {
 		update.$set.username = username;
 	}
-	if (correct_answer) {
-		update.$addToSet.correct_answers = correct_answer._id;
 
+	if (phone) {
+		update.$set.phone = phone;
 	}
-	if (answered_question) {
-		update.$addToSet.answered_questions = answered_question._id;
+	if (email) {
+		update.$set.email = email;
+	}
 
+	if (addAddress) {
+		update.$addToSet.address = addAddress;
+	}
+	if (deleteAddress) {
+		update.$pull.address = { $in: deleteAddress};
+	}
+
+	if(order) {
+		update.$push.orders
 	}
 	userModel.findOneAndUpdate({_id: userId}, update, {new: true})
 		.then(user => {

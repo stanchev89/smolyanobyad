@@ -35,7 +35,7 @@ export class CartComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.user$.subscribe(user => this.selectedAddress =  user.address[0].address);
+    this.user$.subscribe(user => this.selectedAddress =  user.address[0].location);
   }
 
 
