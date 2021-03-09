@@ -10,6 +10,5 @@ export interface IUser {
     orders: IOrder[];
     phone: string;
     email: string;
-    favouriteDishes: IDish[];
     cart: ICart;
 }

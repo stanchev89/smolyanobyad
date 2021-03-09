@@ -22,7 +22,6 @@ export class UserService {
     phone: '+359876969696',
     email: 'stanchev89@abv.bg',
     orders: [],
-    favouriteDishes: [],
     cart: this.initialCart
   };
 

@@ -84,12 +84,16 @@ function changeUserPassword(req,res,next) {
 			user.password = newPassword;
 			user.save()
 			res.clearCookie(authCookieName).status(200).send(user);
-		})
+		});
 
 	}).catch(next);
 }
 
 function getProfileInfo(req, res, next) {
+	if(!req.user) {
+		res.status(200).send('Successful guest user request...');
+		return;
+	}
 	const { _id: userId } = req.user;
 
 	userModel
@@ -113,6 +117,7 @@ function editProfileInfo(req, res, next) {
 	const {username, correct_answer, answered_question, is_vip} = req.body;
 	const update = {
 		$addToSet: {},
+		$push:{},
 		$set: {}
 	};
 	if (is_vip) {
@@ -123,9 +128,11 @@ function editProfileInfo(req, res, next) {
 	}
 	if (correct_answer) {
 		update.$addToSet.correct_answers = correct_answer._id;
+
 	}
 	if (answered_question) {
 		update.$addToSet.answered_questions = answered_question._id;
+
 	}
 	userModel.findOneAndUpdate({_id: userId}, update, {new: true})
 		.then(user => {
