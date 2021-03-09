@@ -11,7 +11,7 @@ const config = {
 	production: {
 		port: process.env.PORT || 3000,
 		// dbURL: "mongodb://localhost:27017/quiz",
-		dbURL:"mongodb+srv://stanchev89:stanchev89@cluster0.qyezc.gcp.mongodb.net/quizDB-dump?retryWrites=true&w=majority",
+		dbURL:"mongodb+srv://stanchev89:stanchev89@cluster0.qyezc.gcp.mongodb.net/delivery?retryWrites=true&w=majority",
 		origin: []
 	}
 };
