@@ -1,5 +1,4 @@
 const { dishModel } = require("../models");
-// const { newPost } = require("./postController");
 
 function getAllDishes(req, res, next) {
 	dishModel.find().then((dishes) => res.json(dishes)).catch(next);

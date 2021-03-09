@@ -8,7 +8,8 @@ const validator = require("../validators");
 router.post(
 	"/register",
 	auth(false),
-	validator.checkMinLength(5, "username", "password"),
+	validator.checkMinLength(3, "username"),
+	validator.checkMinLength(5, "password"),
 	validator.onlyEnglishAndNumbers("username", "password"),
 	validator.checkUsernameExisting,
 	validator.handleValidationErrors,
@@ -16,7 +17,8 @@ router.post(
 );
 router.post(
 	"/login",
-	validator.checkMinLength(5, "username", "password"),
+	validator.checkMinLength(3, "username"),
+	validator.checkMinLength(5, "password"),
 	validator.onlyEnglishAndNumbers("username", "password"),
 	validator.handleValidationErrors,
 	userController.login

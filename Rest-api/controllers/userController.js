@@ -15,7 +15,7 @@ function register(req, res, next) {
 	const { username, password, repeatPassword, email, phone } = req.body;
 
 	return userModel
-		.create({ username, password, password, email, phone, cart = [], orders = [], address = [], })
+		.create({ username, password, email, phone, cart:{ products: {}, totalPrice:0}, orders: [], address: [] })
 		.then(() => {
 			res.status(200).send({message:'Successful registration'});
 		})

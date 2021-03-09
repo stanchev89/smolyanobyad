@@ -1,7 +1,7 @@
-const authController = require("./auth");
+const userController = require("./userController");
 const dishController = require("./dishController");
 
 module.exports = {
-	authController,
+	userController,
 	dishController
 };
