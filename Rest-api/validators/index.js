@@ -36,8 +36,8 @@ const repeatPasswordCheck = body("repeatPassword", "Passwords don't match!").cus
 	return true;
 });
 
-const checkUsernameExisting = body("username", "Username already in use!").custom(async (value, { req, next }) => {
-	const user = await userModel.findOne({ username: value });
+const checkUsernameExisting = (model) => body("username", "Username already in use!").custom(async (value, { req, next }) => {
+	const user = await model.findOne({ username: value });
 	if (user) {
 		return Promise.reject("Username already in use!");
 	}

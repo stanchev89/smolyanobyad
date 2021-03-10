@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-const saltRounds = Number(process.env.SALTROUNDS) || 5;
+const saltRounds = Number(process.env.SALTROUNDS)
 
 const validateEmail = function (email) {
 	const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;

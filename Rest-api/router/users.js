@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { userController } = require("../controllers");
+const { userModel } = require("../models");
 const { auth } = require("../utils");
 const validator = require("../validators");
 
@@ -11,7 +12,7 @@ router.post(
 	validator.checkMinLength(3, "username"),
 	validator.checkMinLength(5, "password"),
 	validator.onlyEnglishAndNumbers("username", "password"),
-	validator.checkUsernameExisting,
+	validator.checkUsernameExisting(userModel),
 	validator.handleValidationErrors,
 	userController.register
 );
@@ -26,10 +27,9 @@ router.post(
 router.post("/logout", userController.logout);
 
 router.get("/profile", auth(false), userController.getProfileInfo);
-router.put("/profile", auth(),
-	userController.editProfileInfo);
 
-router.get('/all-users', auth(false), userController.getAllUsers);
+router.put("/profile", auth(), userController.editProfileInfo);
+
 
 router.post('/change_password',
 	auth(),

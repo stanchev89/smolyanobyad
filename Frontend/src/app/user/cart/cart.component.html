@@ -58,7 +58,7 @@
         <h5 class="details-form-title">Адрес за доставка:</h5>
         <form name="test" id="test" (ngSubmit)="buy(test.value)" #test="ngForm">
             <select name="address" class="address-list" [ngModel]="selectedAddress" #selected>
-                <option *ngFor="let address of (user$ | async).address" name="address"  >{{address.address}}</option>
+                <option *ngFor="let address of (user$ | async).address" name="address"  >{{address.location}}</option>
             </select>
             <button type="button" #addNewAddressBtn (click)="toggleAddNewAddres()" class="btn-add-address" >Добави нов адрес</button>
             <article class="total-price">

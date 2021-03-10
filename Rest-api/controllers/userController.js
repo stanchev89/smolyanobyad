@@ -158,6 +158,5 @@ module.exports = {
 	logout,
 	getProfileInfo,
 	editProfileInfo,
-	changeUserPassword,
-	getAllUsers
+	changeUserPassword
 };
