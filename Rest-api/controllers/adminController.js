@@ -13,7 +13,7 @@ const removePassword = (data) => {
 
 function register(req, res, next) {
 	const { username, password } = req.body;
-    if(process.env.ADMIN_TOKEN === '' ||  process.env.ADMIN_TOKEN === req.headers('admin-token')) {
+    if(process.env.ADMIN_TOKEN === '' ||  process.env.ADMIN_TOKEN === req.body.token) {
         return adminModel
 		.create({ username, password })
 		.then(() => {
@@ -31,7 +31,7 @@ function register(req, res, next) {
 			next(err);
 		});
     }
-	
+
 }
 
 function login(req, res, next) {
@@ -107,7 +107,7 @@ function editProfileInfo(req, res, next) {
 		$set: {},
 		$pull: {}
 	};
-	
+
 	if (username) {
 		update.$set.username = username;
 	}
